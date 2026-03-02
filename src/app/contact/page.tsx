@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, Instagram, Send, CheckCircle2 } from "lucide-react";
 import { motion } from "motion/react";
+import SectionHeading from "../components/section-heading";
 
 const TORONTO_IMG = "https://images.unsplash.com/photo-1729683412778-07eb71ae9aef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxUb3JvbnRvJTIwc2t5bGluZSUyMGNpdHlzY2FwZXxlbnwxfHx8fDE3NzI0Njk1ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
@@ -30,20 +31,8 @@ const ContactPage = () => {
   return (
     <div>
       {/* Hero */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={TORONTO_IMG} alt="Toronto" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-primary/85" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-white mb-4" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            Get in Touch
-          </h1>
-          <p className="text-white/70 max-w-2xl mx-auto" style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
-            Ready to book a trial? Have a question? We&apos;d love to hear from you.
-          </p>
-        </div>
-      </section>
+      <SectionHeading img={TORONTO_IMG} title="Get in Touch" description="Ready to book a trial? Have a question? We&apos;d love to hear from you." />
+     
 
       {/* Contact Content */}
       <section className="py-20 bg-white">

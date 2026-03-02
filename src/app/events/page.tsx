@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ImageWithFallback } from "../components/figma/image-with-fallback";
 import { Calendar, Clock, MapPin, Users, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
 import { motion } from "motion/react";
+import SectionHeading from "../components/section-heading";
 
 const FIELD_IMG = "https://images.unsplash.com/photo-1759733841123-b8e1d75ee45c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmlja2V0JTIwc3RhZGl1bSUyMGZpZWxkJTIwZ3Jhc3N8ZW58MXx8fHwxNzcyNDY5NTg0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 const EQUIP_IMG = "https://images.unsplash.com/photo-1687742909721-cb8dc3361e2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmlja2V0JTIwYmF0JTIwYmFsbCUyMGVxdWlwbWVudHxlbnwxfHx8fDE3NzI0Njk1ODN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
@@ -79,19 +80,7 @@ const EventsPage = () => {
   return (
     <div>
       {/* Hero */}
-      <section className="relative py-20 bg-primary overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-20 w-36 h-36 border-2 border-white rounded-full" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-white mb-4" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            Events & Camps
-          </h1>
-          <p className="text-white/70 max-w-2xl mx-auto" style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
-            Special events, holiday camps, and more. Don&apos;t miss out — spots fill fast!
-          </p>
-        </div>
-      </section>
+      <SectionHeading title="Events & Camps" description="Special events, holiday camps, and more. Don&apos;t miss out — spots fill fast!" />
 
       {/* Events */}
       <section className="py-20 bg-white">
@@ -102,7 +91,7 @@ const EventsPage = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
+              transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.7, delay: i * 0.08 }}
               className={`bg-white border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all ${event.featured ? "border-[#d4a017] ring-2 ring-[#d4a017]/20" : "border-gray-100"}`}
             >
               {event.featured && (

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Clock, MapPin, Users, Calendar } from "lucide-react";
 import { motion } from "motion/react";
+import SectionHeading from "../components/section-heading";
 
 const programmes = [
   {
@@ -71,20 +72,7 @@ const ProgrammesPage = () => {
   return (
     <div>
       {/* Hero */}
-      <section className="relative py-20 bg-primary overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 border-2 border-white rounded-full" />
-          <div className="absolute bottom-5 right-20 w-48 h-48 border border-white rounded-full" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-white mb-4 pt-10" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            Our Programmes
-          </h1>
-          <p className="text-white/70 max-w-2xl mx-auto" style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
-            From first-time players to aspiring professionals — we have a programme for every young cricketer.
-          </p>
-        </div>
-      </section>
+      <SectionHeading title="Our Programmes" description="From first-time players to aspiring professionals — we have a programme for every young cricketer." />
 
       {/* Programmes */}
       <section className="py-20 bg-white">

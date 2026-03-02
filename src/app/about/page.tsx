@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ImageWithFallback } from "../components/figma/image-with-fallback";
 import { ArrowRight, Award, Heart, Target, Shield } from "lucide-react";
 import { motion } from "motion/react";
+import SectionHeading from "../components/section-heading";
 
 const COACH_IMG = "https://images.unsplash.com/photo-1761039808597-5639866bab8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcG9ydHMlMjBjb2FjaCUyMG1lbnRvcmluZyUyMHlvdXRofGVufDF8fHx8MTc3MjQ2OTU4NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 const TEAM_IMG = "https://images.unsplash.com/photo-1710301431051-ee6923af04aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMHNwb3J0cyUyMHRlYW0lMjBvdXRkb29yfGVufDF8fHx8MTc3MjQ2OTU4M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
@@ -46,20 +47,7 @@ const AboutPage = () => {
   return (
     <div>
       {/* Hero */}
-      <section className="relative py-20 bg-primary overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-40 h-40 border-2 border-white rounded-full" />
-          <div className="absolute bottom-10 left-20 w-60 h-60 border border-white rounded-full" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-white mb-4" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            About Cricket Toronto
-          </h1>
-          <p className="text-white/70 max-w-2xl mx-auto" style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
-            Meet the passionate team behind Toronto&apos;s most trusted youth cricket academy.
-          </p>
-        </div>
-      </section>
+      <SectionHeading title="About Cricket Toronto" description="Meet the passionate team behind Toronto's most trusted youth cricket academy." />
 
       {/* Mission */}
       <section className="py-20 bg-white">

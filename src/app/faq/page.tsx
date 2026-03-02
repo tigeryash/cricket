@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import SectionHeading from "../components/section-heading";
 
 const faqCategories = [
   {
@@ -126,16 +127,7 @@ export function FAQPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative py-20 bg-primary overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-white mb-4" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            Frequently Asked Questions
-          </h1>
-          <p className="text-white/70 max-w-2xl mx-auto" style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
-            Everything parents ask us — answered. Can&apos;t find what you need? Just get in touch.
-          </p>
-        </div>
-      </section>
+      <SectionHeading title="Frequently Asked Questions" description="Everything parents ask us — answered. Can&apos;t find what you need? Just get in touch." />
 
       {/* FAQ Content */}
       <section className="py-20 bg-white">

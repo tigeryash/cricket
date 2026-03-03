@@ -1,13 +1,11 @@
 import { buildConfig } from "payload";
 import { postgresAdapter } from "@payloadcms/db-postgres";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
-import { Media } from "./src/payload/collections/Media";
-import { Events } from "./src/payload/collections/Events";
+import { Media } from "./collections/Media";
+import { Events } from "./collections/Events";
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || "",
-  editor: lexicalEditor(),
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,

@@ -68,7 +68,7 @@ const programmes = [
             className="max-w-2xl"
           >
             <span className="inline-flex items-center gap-2 bg-[#d4a017]/20 text-[#d4a017] px-4 py-1.5 rounded-full mb-6" style={{ fontSize: "0.875rem", fontWeight: 600 }}>
-              <Star className="w-4 h-4 fill-current" /> Toronto&apos;s #1 Youth Cricket Academy
+              <Star className="w-4 h-4 fill-current" />Toronto&apos;s #1 Youth Cricket Academy
             </span>
             <h1 className="text-white mb-6" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1 }}>
               Where Young Cricketers <span className="text-[#d4a017]">Discover Their Potential</span>

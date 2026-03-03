@@ -4,11 +4,16 @@ import { s3Storage } from "@payloadcms/storage-s3";
 import { Media } from "./collections/Media.ts";
 import { Events } from "./collections/Events.ts";
 
+const databaseUri = process.env.DATABASE_URI?.replace(
+  "sslmode=require",
+  "sslmode=verify-full",
+);
+
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || "",
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI,
+      connectionString: databaseUri,
     },
   }),
   collections: [Media, Events],

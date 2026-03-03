@@ -1,8 +1,8 @@
 import { buildConfig } from "payload";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { s3Storage } from "@payloadcms/storage-s3";
-import { Media } from "./collections/Media";
-import { Events } from "./collections/Events";
+import { Media } from "./collections/Media.ts";
+import { Events } from "./collections/Events.ts";
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || "",

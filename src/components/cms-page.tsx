@@ -25,11 +25,11 @@ type CMSPageProps = {
   }
 }
 
-const getImageURL = (image: CMSPageProps['page']['hero'] extends infer H
+const getImageURL = (image: (CMSPageProps['page']['hero'] extends infer H
   ? H extends { image?: infer I }
     ? I
     : never
-  : never) => {
+  : never) | undefined) => {
   if (!image) return undefined
   if (typeof image === 'string') return undefined
   return image.url || undefined

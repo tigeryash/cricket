@@ -124,3 +124,69 @@
     @apply bg-background text-foreground;
   }
 }
+
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * Design tokens — Tailwind v4 theme
+ * --------------------------------------------------------------------------- */
+@theme {
+  /* Brand colours */
+  --color-primary:           #1a5c2a;   /* cricket green */
+  --color-primary-dark:      #0f3a1a;
+  --color-gold:              #d4a017;
+  --color-gold-light:        #e0b020;
+
+  /* Neutral palette */
+  --color-foreground:        #111827;
+  --color-muted-foreground:  #6b7280;
+  --color-background:        #ffffff;
+  --color-border:            #e5e7eb;
+
+  /* Surface shades */
+  --color-surface-1:         #f8faf8;   /* very light green tint */
+  --color-surface-2:         #f1f5f1;
+  --color-footer-bg:         #0f2818;   /* dark green footer */
+}
+
+/* ---------------------------------------------------------------------------
+ * Base reset / global styles
+ * --------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans, Inter, system-ui, sans-serif);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings use the Poppins variable set by Next/Font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading, Poppins, system-ui, sans-serif);
+}
+
+/* Keep images from overflowing */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

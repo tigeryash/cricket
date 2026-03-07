@@ -5,18 +5,26 @@ import { Menu, X, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-const navLinks = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/programmes", label: "Programmes" },
-  { to: "/events", label: "Events" },
-  { to: "/faq", label: "FAQ" },
-  { to: "/contact", label: "Contact" },
+const fallbackLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/programmes", label: "Programmes" },
+  { href: "/events", label: "Events" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
 ];
 
-const Navbar = () => {
+type NavbarProps = {
+  links?: Array<{
+    href: string;
+    label: string;
+  }>;
+};
+
+const Navbar = ({ links}: NavbarProps) => {
   const [open, setOpen] = useState(false);
-  const location = usePathname();
+    const pathname = usePathname();
+  const navLinks = links?.length ? links : fallbackLinks;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
@@ -37,10 +45,10 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
-                key={link.to}
-                href={link.to}
+                key={link.href}
+                href={link.href}
                 className={`px-3 py-2 rounded-lg transition-colors ${
-                  location === link.to
+                  pathname === link.href
                     ? "bg-primary/10 text-primary"
                     : "text-foreground/70 hover:text-primary hover:bg-primary/5"
                 }`}
@@ -77,11 +85,11 @@ const Navbar = () => {
           <div className="px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <Link
-                key={link.to}
-                href={link.to}
+                key={link.href}
+                href={link.href}
                 onClick={() => setOpen(false)}
                 className={`block px-4 py-3 rounded-lg transition-colors ${
-                  location === link.to
+                  pathname === link.href
                     ? "bg-primary/10 text-primary"
                     : "text-foreground/70 hover:bg-gray-50"
                 }`}

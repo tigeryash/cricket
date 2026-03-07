@@ -3,6 +3,7 @@ import { postgresAdapter } from "@payloadcms/db-postgres";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { Media } from "./collections/Media.ts";
 import { Events } from "./collections/Events.ts";
+import { Pages } from "./collections/Pages.ts";
 
 const databaseUri = process.env.DATABASE_URI?.replace(
   "sslmode=require",
@@ -16,7 +17,7 @@ export default buildConfig({
       connectionString: databaseUri,
     },
   }),
-  collections: [Media, Events],
+  collections: [Media, Events, Pages],
   plugins: [
     s3Storage({
       collections: {

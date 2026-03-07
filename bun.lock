@@ -6,7 +6,9 @@
       "name": "cricket",
       "dependencies": {
         "@aws-sdk/client-s3": "^3.1000.0",
+        "@payloadcms/admin-bar": "^3.78.0",
         "@payloadcms/db-postgres": "^3.78.0",
+        "@payloadcms/live-preview-react": "^3.78.0",
         "@payloadcms/next": "^3.78.0",
         "@payloadcms/richtext-lexical": "^3.78.0",
         "@payloadcms/storage-s3": "^3.78.0",
@@ -488,11 +490,17 @@
 
     "@open-draft/until": ["@open-draft/until@2.1.0", "", {}, "sha512-U69T3ItWHvLwGg5eJ0n3I62nWuE6ilHlmz7zM0npLBRvPRd7e6NYmg54vvRtP5mZG7kZqZCFVdsTWo7BPtBujg=="],
 
+    "@payloadcms/admin-bar": ["@payloadcms/admin-bar@3.78.0", "", { "peerDependencies": { "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.1 || ^19.1.2 || ^19.2.1", "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.1 || ^19.1.2 || ^19.2.1" } }, "sha512-xjvDix+Ocg3joDkn8lLsU59PpotGsBLybkcHkLYCsZAkqIjpMSz3Xi8xFSNnkWTj0NhqTTdfcpu+OJ7pgaTV1w=="],
+
     "@payloadcms/db-postgres": ["@payloadcms/db-postgres@3.78.0", "", { "dependencies": { "@payloadcms/drizzle": "3.78.0", "@types/pg": "8.10.2", "console-table-printer": "2.12.1", "drizzle-kit": "0.31.7", "drizzle-orm": "0.44.7", "pg": "8.16.3", "prompts": "2.4.2", "to-snake-case": "1.0.0", "uuid": "10.0.0" }, "peerDependencies": { "payload": "3.78.0" } }, "sha512-jUAzCAAvd5u0JWk3jpx8C9fUXR774YLe2FdoZA+VPYSIBMdBHGO8vJn8rGPT2L/OzoEH1qAd62XG6geOeamBGg=="],
 
     "@payloadcms/drizzle": ["@payloadcms/drizzle@3.78.0", "", { "dependencies": { "console-table-printer": "2.12.1", "dequal": "2.0.3", "drizzle-orm": "0.44.7", "prompts": "2.4.2", "to-snake-case": "1.0.0", "uuid": "9.0.0" }, "peerDependencies": { "payload": "3.78.0" } }, "sha512-0lpEc4nR5ExVAPVZ1IH84pdYbJofBZWA7g307pEw0IQxNwYJ/ZggQRZcP9Bk9I+QA9tYFAa/Q3nPIPGu/Qiqvw=="],
 
     "@payloadcms/graphql": ["@payloadcms/graphql@3.78.0", "", { "dependencies": { "graphql-scalars": "1.22.2", "pluralize": "8.0.0", "ts-essentials": "10.0.3", "tsx": "4.21.0" }, "peerDependencies": { "graphql": "^16.8.1", "payload": "3.78.0" }, "bin": { "payload-graphql": "bin.js" } }, "sha512-w7oGFJFAMHg50SY5L6jmQXqMky0ZRHfn+8V8rpqRyyXF9TxkrDVMacKGRulluF0qS38n40CQBxr1GfE2LfO91w=="],
+
+    "@payloadcms/live-preview": ["@payloadcms/live-preview@3.78.0", "", {}, "sha512-32u2Tg0IvjXiJsMFCaxFuo5fKekVy7Q8KDXMsPtQbmPJn8cEA/KU6L0DgD5fRIhfm/BZgmwlbDDZq5dftAYSLQ=="],
+
+    "@payloadcms/live-preview-react": ["@payloadcms/live-preview-react@3.78.0", "", { "dependencies": { "@payloadcms/live-preview": "3.78.0" }, "peerDependencies": { "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.1 || ^19.1.2 || ^19.2.1", "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.1 || ^19.1.2 || ^19.2.1" } }, "sha512-JFp2ScLHUkpx9YMMlQf8l688Fz/TacB3N76NExc3Aw0eNRfvpG+sEp1Rm1b7bt70rbxoM/wsbqcuuPIYOCbBWw=="],
 
     "@payloadcms/next": ["@payloadcms/next@3.78.0", "", { "dependencies": { "@dnd-kit/core": "6.3.1", "@dnd-kit/modifiers": "9.0.0", "@dnd-kit/sortable": "10.0.0", "@payloadcms/graphql": "3.78.0", "@payloadcms/translations": "3.78.0", "@payloadcms/ui": "3.78.0", "busboy": "^1.6.0", "dequal": "2.0.3", "file-type": "19.3.0", "graphql-http": "^1.22.0", "graphql-playground-html": "1.6.30", "http-status": "2.1.0", "path-to-regexp": "6.3.0", "qs-esm": "7.0.2", "sass": "1.77.4", "uuid": "10.0.0" }, "peerDependencies": { "graphql": "^16.8.1", "next": ">=15.2.9 <15.3.0 || >=15.3.9 <15.4.0 || >=15.4.11 <15.5.0 || >=16.2.0-canary.10 <17.0.0", "payload": "3.78.0" } }, "sha512-uV8eYfOEl78BOiWd59Y2iv4NR3mrMbazWnCurmrab6CNRUARdF6IMtEfiEZkzOViMLmhfNDSBtqiMXiO8i3QIg=="],
 

@@ -18,13 +18,25 @@ const collectionLabels = {
     plural: 'Pages',
     singular: 'Page',
   },
-  posts: {
-    plural: 'Posts',
-    singular: 'Post',
+  programmes: {
+    plural: 'Programmes',
+    singular: 'Programme',
   },
-  projects: {
-    plural: 'Projects',
-    singular: 'Project',
+  events: {
+    plural: 'Events',
+    singular: 'Event',
+  },
+  coaches: {
+    plural: 'Coaches',
+    singular: 'Coach',
+  },
+  testimonials: {
+    plural: 'Testimonials',
+    singular: 'Testimonial',
+  },
+  faqs: {
+    plural: 'FAQs',
+    singular: 'FAQ',
   },
 }
 

@@ -77,6 +77,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined)
   const isPayloadApiMedia = typeof src === 'string' && src.includes('/api/media')
+  const isRemoteMedia = typeof src === 'string' && /^https?:\/\//.test(src)
 
   // NOTE: this is used by the browser to determine which image to download at different screen sizes
   const sizes = sizeFromProps
@@ -99,7 +100,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         loading={loading}
         sizes={sizes}
         src={src}
-        unoptimized={isPayloadApiMedia}
+        unoptimized={isPayloadApiMedia || isRemoteMedia}
         width={!fill ? width : undefined}
       />
     </picture>

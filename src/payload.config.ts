@@ -23,6 +23,30 @@ import { Navigation } from './payload/globals/Navigation'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const r2PublicBaseURL = (
+  process.env.R2_PUBLIC_BASE_URL ||
+  process.env.R2_PUBLIC_URL ||
+  (process.env.R2_ENDPOINT && process.env.R2_BUCKET
+    ? `${process.env.R2_ENDPOINT.replace(/\/$/, '')}/${process.env.R2_BUCKET}`
+    : '')
+).replace(/\/$/, '')
+
+const generateR2FileURL = ({
+  filename,
+  prefix,
+}: {
+  filename: string
+  prefix?: string
+}) => {
+  const key = path.posix.join(prefix || '', encodeURIComponent(filename))
+
+  if (!r2PublicBaseURL) {
+    return `/api/media/file/${key}`
+  }
+
+  return `${r2PublicBaseURL}/${key}`
+}
+
 const databaseUri = process.env.DATABASE_URI?.replace(
   "sslmode=require",
   "sslmode=verify-full",
@@ -121,7 +145,10 @@ export default buildConfig({
   plugins: [
     s3Storage({
       collections: {
-        media: true,
+        media: {
+          disablePayloadAccessControl: true,
+          generateFileURL: generateR2FileURL,
+        },
       },
       bucket: process.env.R2_BUCKET || "",
       config: {

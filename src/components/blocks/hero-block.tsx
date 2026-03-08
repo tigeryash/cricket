@@ -38,6 +38,7 @@ export function HeroBlock({
       ? getMediaUrl(backgroundImage.url)
       : null
   const isPayloadApiMedia = Boolean(bgUrl && bgUrl.includes('/api/media'))
+  const isRemoteMedia = Boolean(bgUrl && /^https?:\/\//.test(bgUrl))
 
   /**
    * Split the heading so the highlighted portion is gold.
@@ -70,7 +71,7 @@ export function HeroBlock({
           className="object-cover"
           priority
           sizes="100vw"
-          unoptimized={isPayloadApiMedia}
+          unoptimized={isPayloadApiMedia || isRemoteMedia}
         />
       )}
 

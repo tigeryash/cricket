@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Poppins, Inter } from 'next/font/google'
 import { Navbar } from '../../components/navbar'
 import { Footer } from '../../components/footer'
+import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { findGlobalSafe } from '../../lib/payload'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
@@ -60,6 +61,8 @@ export default async function FrontendLayout({
       </head>
       <body>
         <Providers>
+          <LivePreviewListener />
+
           {/* Announcement Banner */}
           {siteSettings?.announcementEnabled && siteSettings.announcementText && (
             <div className="bg-gold text-footer-bg text-center py-2 px-4 text-sm font-semibold">

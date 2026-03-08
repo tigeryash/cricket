@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { revalidatePageBySlug } from '../hooks/revalidate'
+import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 
 // Blocks
 import { HeroBlock } from '../blocks/HeroBlock'
@@ -42,12 +43,10 @@ export const Pages: CollectionConfig = {
     useAsTitle: 'title',
     group: 'Content',
     defaultColumns: ['title', 'slug', 'status', 'updatedAt'],
-    livePreview: {
-      url: ({ data }) =>
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/${data?.slug === 'home' ? '' : data?.slug}`,
-    },
     preview: (doc) =>
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/${doc?.slug === 'home' ? '' : doc?.slug}`,
+      typeof doc?.slug === 'string'
+        ? generatePreviewPath({ collection: 'pages', slug: doc.slug })
+        : null,
   },
   versions: {
     drafts: {

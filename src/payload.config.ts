@@ -5,6 +5,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import sharp from 'sharp'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { generatePreviewPath } from './utilities/generatePreviewPath'
 // Collections
 import { Media } from './payload/collections/Media'
 import { Coaches } from './payload/collections/Coaches'
@@ -52,6 +53,57 @@ const databaseUri = process.env.DATABASE_URI?.replace(
   "sslmode=verify-full",
 );
 
+const collectionLivePreviewRoutes: Record<string, string> = {
+  coaches: '/about',
+  events: '/events',
+  faqs: '/faq',
+  programmes: '/programmes',
+  testimonials: '/',
+}
+
+const globalLivePreviewRoutes: Record<string, string> = {
+  navigation: '/',
+  'site-settings': '/',
+}
+
+const buildLivePreviewURL = (path: string) => {
+  const encodedParams = new URLSearchParams({
+    path,
+    previewSecret: process.env.PREVIEW_SECRET || '',
+  })
+
+  return `/next/preview?${encodedParams.toString()}`
+}
+
+const getLivePreviewURL = ({
+  data,
+  collectionConfig,
+  globalConfig,
+}: {
+  data?: Record<string, unknown>
+  collectionConfig?: { slug?: string }
+  globalConfig?: { slug?: string }
+}) => {
+  const slug = typeof data?.slug === 'string' ? data.slug : undefined
+
+  if (collectionConfig?.slug === 'pages') {
+    if (!slug) return null
+    return buildLivePreviewURL(slug === 'home' ? '/' : `/${slug}`)
+  }
+
+  if (collectionConfig?.slug) {
+    const path = collectionLivePreviewRoutes[collectionConfig.slug]
+    return path ? buildLivePreviewURL(path) : null
+  }
+
+  if (globalConfig?.slug) {
+    const path = globalLivePreviewRoutes[globalConfig.slug]
+    return path ? buildLivePreviewURL(path) : null
+  }
+
+  return null
+}
+
 export default buildConfig({
   // ---------------------------------------------------------------------------
   // Admin panel
@@ -65,6 +117,9 @@ export default buildConfig({
       titleSuffix: '— Cricket Toronto CMS',
     },
     livePreview: {
+      collections: ['pages', 'programmes', 'events', 'coaches', 'testimonials', 'faqs'],
+      globals: ['navigation', 'site-settings'],
+      url: getLivePreviewURL,
       breakpoints: [
         { label: 'Mobile', name: 'mobile', width: 375, height: 812 },
         { label: 'Tablet', name: 'tablet', width: 768, height: 1024 },

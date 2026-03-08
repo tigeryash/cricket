@@ -4,7 +4,8 @@ export const getServerSideURL = () => {
 
 export const getClientSideURL = () => {
   if (typeof window !== 'undefined') {
-    return window.location.origin
+    const { protocol, hostname, port } = window.location
+    return `${protocol}//${hostname}${port ? `:${port}` : ''}`
   }
 
   return getServerSideURL()

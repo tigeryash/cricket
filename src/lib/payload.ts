@@ -11,6 +11,7 @@
 import type { Config } from '@/payload-types'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
+import { draftMode } from 'next/headers'
 
 export const getPayloadClient = () => getPayload({ config: configPromise })
 
@@ -30,9 +31,15 @@ export async function findCollectionSafe<TSlug extends CollectionSlug>(
 	options: FindCollectionOptions<TSlug>,
 ): Promise<Config['collections'][TSlug][]> {
 	const payload = await getPayloadClient()
+	const { isEnabled: isDraftMode } = await draftMode()
+	const useDraft = options.draft ?? isDraftMode
 
 	try {
-		const result = await payload.find(options as never)
+		const result = await payload.find({
+			...options,
+			draft: useDraft,
+			overrideAccess: true,
+		} as never)
 		return result.docs as Config['collections'][TSlug][]
 	} catch (error) {
 		console.warn(`Could not fetch collection "${options.collection}":`, error)
@@ -42,9 +49,14 @@ export async function findCollectionSafe<TSlug extends CollectionSlug>(
 
 export async function findGlobalSafe<TSlug extends GlobalSlug>(slug: TSlug): Promise<Config['globals'][TSlug] | null> {
 	const payload = await getPayloadClient()
+	const { isEnabled: isDraftMode } = await draftMode()
 
 	try {
-		return await payload.findGlobal({ slug })
+		return await payload.findGlobal({
+			slug,
+			draft: isDraftMode,
+			overrideAccess: true,
+		} as never)
 	} catch (error) {
 		console.warn(`Could not fetch global "${slug}":`, error)
 		return null

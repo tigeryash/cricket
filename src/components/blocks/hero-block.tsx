@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Play } from 'lucide-react'
 
+import { getMediaUrl } from '@/utilities/getMediaUrl'
+
 interface MediaObject {
   url?: string | null
   alt?: string | null
@@ -33,8 +35,9 @@ export function HeroBlock({
 }: HeroBlockProps) {
   const bgUrl =
     typeof backgroundImage === 'object' && backgroundImage?.url
-      ? backgroundImage.url
+      ? getMediaUrl(backgroundImage.url)
       : null
+  const isPayloadApiMedia = Boolean(bgUrl && bgUrl.includes('/api/media'))
 
   /**
    * Split the heading so the highlighted portion is gold.
@@ -67,6 +70,7 @@ export function HeroBlock({
           className="object-cover"
           priority
           sizes="100vw"
+          unoptimized={isPayloadApiMedia}
         />
       )}
 

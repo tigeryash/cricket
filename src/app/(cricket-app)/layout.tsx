@@ -54,8 +54,10 @@ export default async function FrontendLayout({
   ])
 
   return (
-    <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
-      <InitTheme />
+    <html lang="en" className={`${poppins.variable} ${inter.variable}`} suppressHydrationWarning>
+      <head>
+        <InitTheme />
+      </head>
       <body>
         <Providers>
           {/* Announcement Banner */}

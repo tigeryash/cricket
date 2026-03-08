@@ -1,10 +1,23 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateAllFrontendPaths } from '../hooks/revalidate'
 
 /**
  * Events — camps, open days, tournaments
  */
 export const Events: CollectionConfig = {
   slug: 'events',
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+    afterDelete: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+  },
   admin: {
     useAsTitle: 'name',
     group: 'Content',

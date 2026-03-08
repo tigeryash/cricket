@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidatePageBySlug } from '../hooks/revalidate'
 
 // Blocks
 import { HeroBlock } from '../blocks/HeroBlock'
@@ -21,6 +22,22 @@ import { RichTextBlock } from '../blocks/RichTextBlock'
  */
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  hooks: {
+    afterChange: [
+      async ({ doc, previousDoc }) => {
+        await revalidatePageBySlug(doc.slug)
+
+        if (previousDoc?.slug && previousDoc.slug !== doc.slug) {
+          await revalidatePageBySlug(previousDoc.slug)
+        }
+      },
+    ],
+    afterDelete: [
+      async ({ doc }) => {
+        await revalidatePageBySlug(doc.slug)
+      },
+    ],
+  },
   admin: {
     useAsTitle: 'title',
     group: 'Content',

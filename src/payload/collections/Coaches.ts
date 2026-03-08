@@ -1,10 +1,23 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateAllFrontendPaths } from '../hooks/revalidate'
 
 /**
  * Coaches — staff profiles displayed on the About page
  */
 export const Coaches: CollectionConfig = {
   slug: 'coaches',
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+    afterDelete: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+  },
   admin: {
     useAsTitle: 'name',
     group: 'Content',

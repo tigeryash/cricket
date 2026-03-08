@@ -1,10 +1,23 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateAllFrontendPaths } from '../hooks/revalidate'
 
 /**
  * Testimonials — parent quotes shown on the Home page
  */
 export const Testimonials: CollectionConfig = {
   slug: 'testimonials',
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+    afterDelete: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+  },
   admin: {
     useAsTitle: 'parentName',
     group: 'Content',

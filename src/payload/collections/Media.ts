@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateAllFrontendPaths } from '../hooks/revalidate'
 
 /**
  * Media — images and files stored in Cloudflare R2
@@ -7,6 +8,19 @@ import type { CollectionConfig } from 'payload'
  */
 export const Media: CollectionConfig = {
   slug: 'media',
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+    afterDelete: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+  },
+  
   access:{
     read: () => true,
   },

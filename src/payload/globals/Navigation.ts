@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { revalidateGlobal } from '../hooks/revalidate'
 
 /**
  * Navigation — header nav links and CTA button
@@ -6,6 +7,13 @@ import type { GlobalConfig } from 'payload'
 export const Navigation: GlobalConfig = {
   slug: 'navigation',
   label: 'Navigation',
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateGlobal('navigation')
+      },
+    ],
+  },
   admin: {
     group: 'Settings',
     description: 'Header navigation links and CTA button.',

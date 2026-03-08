@@ -1,10 +1,23 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateAllFrontendPaths } from '../hooks/revalidate'
 
 /**
  * Programmes — coaching programmes (Little Legends, Rising Stars, etc.)
  */
 export const Programmes: CollectionConfig = {
   slug: 'programmes',
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+    afterDelete: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+  },
   admin: {
     useAsTitle: 'name',
     group: 'Content',

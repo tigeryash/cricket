@@ -1,10 +1,23 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateAllFrontendPaths } from '../hooks/revalidate'
 
 /**
  * FAQs — question/answer pairs, grouped by category
  */
 export const FAQs: CollectionConfig = {
   slug: 'faqs',
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+    afterDelete: [
+      async () => {
+        await revalidateAllFrontendPaths()
+      },
+    ],
+  },
   admin: {
     useAsTitle: 'question',
     group: 'Content',

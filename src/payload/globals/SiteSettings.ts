@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { revalidateGlobal } from '../hooks/revalidate'
 
 /**
  * SiteSettings — singleton global for site-wide configuration.
@@ -7,6 +8,13 @@ import type { GlobalConfig } from 'payload'
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: 'Site Settings',
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateGlobal('site-settings')
+      },
+    ],
+  },
   admin: {
     group: 'Settings',
     description: 'Global settings — contact details, SEO defaults, social links.',

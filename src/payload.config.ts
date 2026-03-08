@@ -145,10 +145,7 @@ export default buildConfig({
   plugins: [
     s3Storage({
       collections: {
-        media: {
-          disablePayloadAccessControl: true,
-          generateFileURL: generateR2FileURL,
-        },
+        media: true
       },
       bucket: process.env.R2_BUCKET || "",
       config: {

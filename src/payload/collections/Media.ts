@@ -7,6 +7,9 @@ import type { CollectionConfig } from 'payload'
  */
 export const Media: CollectionConfig = {
   slug: 'media',
+  access:{
+    read: () => true,
+  },
   admin: {
     group: 'Content',
     defaultColumns: ['filename', 'alt', 'mimeType', 'filesize', 'updatedAt'],

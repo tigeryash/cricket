@@ -3,6 +3,8 @@ import { Poppins, Inter } from 'next/font/google'
 import { Navbar } from '../../components/navbar'
 import { Footer } from '../../components/footer'
 import { findGlobalSafe } from '../../lib/payload'
+import { Providers } from '@/providers'
+import { InitTheme } from '@/providers/Theme/InitTheme'
 import '@/styles/globals.css'
 
 // ---------------------------------------------------------------------------
@@ -53,25 +55,28 @@ export default async function FrontendLayout({
 
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
+      <InitTheme />
       <body>
-        {/* Announcement Banner */}
-        {siteSettings?.announcementEnabled && siteSettings.announcementText && (
-          <div className="bg-gold text-footer-bg text-center py-2 px-4 text-sm font-semibold">
-            {siteSettings.announcementLink ? (
-              <a href={siteSettings.announcementLink} className="hover:underline">
-                {siteSettings.announcementText}
-              </a>
-            ) : (
-              siteSettings.announcementText
-            )}
-          </div>
-        )}
+        <Providers>
+          {/* Announcement Banner */}
+          {siteSettings?.announcementEnabled && siteSettings.announcementText && (
+            <div className="bg-gold text-footer-bg text-center py-2 px-4 text-sm font-semibold">
+              {siteSettings.announcementLink ? (
+                <a href={siteSettings.announcementLink} className="hover:underline">
+                  {siteSettings.announcementText}
+                </a>
+              ) : (
+                siteSettings.announcementText
+              )}
+            </div>
+          )}
 
-        <Navbar navigation={navigation} siteSettings={siteSettings} />
+          <Navbar navigation={navigation} siteSettings={siteSettings} />
 
-        <main className="pt-16 md:pt-20">{children}</main>
+          <main className="pt-16 md:pt-20">{children}</main>
 
-        <Footer siteSettings={siteSettings} />
+          <Footer siteSettings={siteSettings} />
+        </Providers>
       </body>
     </html>
   )
